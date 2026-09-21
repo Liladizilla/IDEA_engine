@@ -1,0 +1,10 @@
+.env
+*.pem
+__pycache__/
+.pytest_cache/
+.venv/
+mobile/build/
+mobile/.dart_tool/
+mobile/android/local.properties
+mobile/android/key.properties
+*.jks

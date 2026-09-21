@@ -1,0 +1,897 @@
+{
+ "is_sample": true,
+ "note": "Fixture data for design and development. Not real evidence.",
+ "opportunities": [
+  {
+   "id": "opp-ai-support-smb",
+   "title": "Affordable AI automation for small businesses",
+   "core_question": "How can a small business automate customer replies without paying an agency?",
+   "audience": "Small business owners",
+   "why_detected": "People keep asking how to set this up cheaply, and the tutorials they find stop before anything is deployed.",
+   "score": 87,
+   "band": "high",
+   "confidence": "medium",
+   "factors": [
+    {
+     "key": "demand",
+     "label": "Demand",
+     "value": 92.0,
+     "weight": 0.18,
+     "inverted": false,
+     "points": 16.56,
+     "max_points": 18.0,
+     "note": "118 different people asked, across 4 communities."
+    },
+    {
+     "key": "question_density",
+     "label": "Question density",
+     "value": 94.0,
+     "weight": 0.14,
+     "inverted": false,
+     "points": 13.16,
+     "max_points": 14.0,
+     "note": ""
+    },
+    {
+     "key": "growth",
+     "label": "Growth",
+     "value": 100.0,
+     "weight": 0.14,
+     "inverted": false,
+     "points": 14.0,
+     "max_points": 14.0,
+     "note": ""
+    },
+    {
+     "key": "dissatisfaction",
+     "label": "Dissatisfaction",
+     "value": 94.0,
+     "weight": 0.16,
+     "inverted": false,
+     "points": 15.04,
+     "max_points": 16.0,
+     "note": "Over a third of the questions say a tutorial did not work or stopped short."
+    },
+    {
+     "key": "engagement",
+     "label": "Engagement",
+     "value": 78.0,
+     "weight": 0.08,
+     "inverted": false,
+     "points": 6.24,
+     "max_points": 8.0,
+     "note": ""
+    },
+    {
+     "key": "audience_value",
+     "label": "Audience value",
+     "value": 82.0,
+     "weight": 0.06,
+     "inverted": false,
+     "points": 4.92,
+     "max_points": 6.0,
+     "note": ""
+    },
+    {
+     "key": "recency",
+     "label": "Recency",
+     "value": 95.0,
+     "weight": 0.06,
+     "inverted": false,
+     "points": 5.7,
+     "max_points": 6.0,
+     "note": ""
+    },
+    {
+     "key": "competition",
+     "label": "Competition",
+     "value": 40.0,
+     "weight": 0.1,
+     "inverted": true,
+     "points": 6.0,
+     "max_points": 10.0,
+     "note": "18 creators cover the general topic; few cover the small-business case."
+    },
+    {
+     "key": "answer_saturation",
+     "label": "Answer coverage",
+     "value": 30.0,
+     "weight": 0.08,
+     "inverted": true,
+     "points": 5.6,
+     "max_points": 8.0,
+     "note": "Existing videos are mostly concept demos. Answer quality not yet assessed by AI."
+    }
+   ],
+   "stats": {
+    "related_questions": 142,
+    "askers": 118,
+    "sources": {
+     "youtube": 61,
+     "reddit": 81
+    },
+    "communities": 4,
+    "growth_7d": 1.3,
+    "velocity": "accelerating"
+   },
+   "trend": [
+    4,
+    5,
+    4,
+    6,
+    7,
+    8,
+    9,
+    9,
+    11,
+    12,
+    14,
+    15,
+    18,
+    20
+   ],
+   "competition": {
+    "level": "medium",
+    "creators": 18,
+    "note": "Many videos explain the concept. Few show a working setup for a shop with one employee."
+   },
+   "answer_gap": {
+    "level": "high",
+    "note": "Most answers demonstrate a tool, then stop before deployment and cost."
+   },
+   "evidence": [
+    {
+     "source": "reddit",
+     "kind": "post",
+     "where": "r/smallbusiness",
+     "excerpt": "I've tried three AI automation tutorials and none actually show how to deploy the thing.",
+     "engagement": "212 upvotes, 64 comments",
+     "days_ago": 2,
+     "url": "sample://reddit"
+    },
+    {
+     "source": "youtube",
+     "kind": "comment",
+     "where": "Comment on a 24 min tutorial",
+     "excerpt": "Great demo, but where does this run once my laptop is closed? Nobody explains that part.",
+     "engagement": "88 likes",
+     "days_ago": 4,
+     "url": "sample://youtube"
+    },
+    {
+     "source": "reddit",
+     "kind": "post",
+     "where": "r/Entrepreneur",
+     "excerpt": "Quoted 3,000 a month by an agency for what looks like a simple auto-reply setup. Is there a cheaper way?",
+     "engagement": "141 upvotes, 52 comments",
+     "days_ago": 6,
+     "url": "sample://reddit"
+    },
+    {
+     "source": "youtube",
+     "kind": "comment",
+     "where": "Comment on a 12 min walkthrough",
+     "excerpt": "Still confused about how to connect this to my actual inbox. Every tutorial uses a fake one.",
+     "engagement": "47 likes",
+     "days_ago": 9,
+     "url": "sample://youtube"
+    }
+   ],
+   "related_questions": [
+    "Can I automate replies to customers with a free tool?",
+    "How much does it cost to run an AI assistant for a small shop?",
+    "Do I need a developer to set up an AI receptionist?",
+    "What happens to the automation when my computer is off?",
+    "Is an AI auto-reply safe to use with real customers?"
+   ],
+   "ideas": [
+    {
+     "title": "Why most AI automation tutorials never reach a real customer",
+     "hook": "You followed the tutorial. It worked on video. Here is why it will not work on Monday morning.",
+     "format": "youtube_long",
+     "difficulty": "medium",
+     "why_now": "Question volume roughly doubled over two weeks."
+    },
+    {
+     "title": "I automated a small shop's replies for the cost of a coffee a month",
+     "hook": "A full build, deployed, with the monthly bill on screen.",
+     "format": "youtube_long",
+     "difficulty": "hard",
+     "why_now": "People compare agency quotes with DIY cost."
+    },
+    {
+     "title": "The three things AI tutorials skip: hosting, cost, failure",
+     "hook": "A short checklist for anyone about to build.",
+     "format": "youtube_short",
+     "difficulty": "easy",
+     "why_now": "Repeated complaints about missing deployment steps."
+    }
+   ]
+  },
+  {
+   "id": "opp-deploy-agents-cheap",
+   "title": "Deploying AI agents without a big cloud bill",
+   "core_question": "How do I deploy an AI agent cheaply once it works on my laptop?",
+   "audience": "Beginner and self-taught developers",
+   "why_detected": "The agent works locally, then the questions turn to hosting, secrets and cost. Existing answers assume a team and a budget.",
+   "score": 83,
+   "band": "high",
+   "confidence": "medium",
+   "factors": [
+    {
+     "key": "demand",
+     "label": "Demand",
+     "value": 88.0,
+     "weight": 0.18,
+     "inverted": false,
+     "points": 15.84,
+     "max_points": 18.0,
+     "note": ""
+    },
+    {
+     "key": "question_density",
+     "label": "Question density",
+     "value": 86.0,
+     "weight": 0.14,
+     "inverted": false,
+     "points": 12.04,
+     "max_points": 14.0,
+     "note": ""
+    },
+    {
+     "key": "growth",
+     "label": "Growth",
+     "value": 100.0,
+     "weight": 0.14,
+     "inverted": false,
+     "points": 14.0,
+     "max_points": 14.0,
+     "note": ""
+    },
+    {
+     "key": "dissatisfaction",
+     "label": "Dissatisfaction",
+     "value": 92.0,
+     "weight": 0.16,
+     "inverted": false,
+     "points": 14.72,
+     "max_points": 16.0,
+     "note": "Many questions mention outdated or incomplete deployment guides."
+    },
+    {
+     "key": "engagement",
+     "label": "Engagement",
+     "value": 70.0,
+     "weight": 0.08,
+     "inverted": false,
+     "points": 5.6,
+     "max_points": 8.0,
+     "note": ""
+    },
+    {
+     "key": "audience_value",
+     "label": "Audience value",
+     "value": 76.0,
+     "weight": 0.06,
+     "inverted": false,
+     "points": 4.56,
+     "max_points": 6.0,
+     "note": ""
+    },
+    {
+     "key": "recency",
+     "label": "Recency",
+     "value": 90.0,
+     "weight": 0.06,
+     "inverted": false,
+     "points": 5.4,
+     "max_points": 6.0,
+     "note": ""
+    },
+    {
+     "key": "competition",
+     "label": "Competition",
+     "value": 42.0,
+     "weight": 0.1,
+     "inverted": true,
+     "points": 5.8,
+     "max_points": 10.0,
+     "note": "Deployment content exists but targets enterprise setups."
+    },
+    {
+     "key": "answer_saturation",
+     "label": "Answer coverage",
+     "value": 36.0,
+     "weight": 0.08,
+     "inverted": true,
+     "points": 5.12,
+     "max_points": 8.0,
+     "note": "Answer quality not yet assessed by AI."
+    }
+   ],
+   "stats": {
+    "related_questions": 96,
+    "askers": 79,
+    "sources": {
+     "youtube": 34,
+     "reddit": 62
+    },
+    "communities": 3,
+    "growth_7d": 1.2,
+    "velocity": "accelerating"
+   },
+   "trend": [
+    3,
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14
+   ],
+   "competition": {
+    "level": "medium",
+    "creators": 14,
+    "note": "Deployment tutorials are common. Budget-first ones are rare."
+   },
+   "answer_gap": {
+    "level": "high",
+    "note": "Guides skip secrets handling and the monthly cost."
+   },
+   "evidence": [
+    {
+     "source": "reddit",
+     "kind": "post",
+     "where": "r/LocalLLaMA",
+     "excerpt": "Agent runs fine locally. What is the cheapest sane way to keep it running 24/7?",
+     "engagement": "176 upvotes, 71 comments",
+     "days_ago": 1,
+     "url": "sample://reddit"
+    },
+    {
+     "source": "youtube",
+     "kind": "comment",
+     "where": "Comment on a 31 min agent build",
+     "excerpt": "Can someone actually show the deploy step without a 200 dollar cloud setup?",
+     "engagement": "63 likes",
+     "days_ago": 3,
+     "url": "sample://youtube"
+    },
+    {
+     "source": "reddit",
+     "kind": "post",
+     "where": "r/webdev",
+     "excerpt": "Every guide I find is outdated. Half the commands do not work anymore.",
+     "engagement": "98 upvotes, 40 comments",
+     "days_ago": 7,
+     "url": "sample://reddit"
+    }
+   ],
+   "related_questions": [
+    "Where can I host a Python AI agent for free or nearly free?",
+    "How do I keep API keys safe when I deploy an agent?",
+    "Is a small VPS enough to run an agent all day?",
+    "How do I stop my agent from running up a huge API bill?"
+   ],
+   "ideas": [
+    {
+     "title": "Deploy an AI agent for under 5 dollars a month",
+     "hook": "Real bill on screen from day one.",
+     "format": "youtube_long",
+     "difficulty": "medium",
+     "why_now": "Cost is the most repeated worry in the questions."
+    },
+    {
+     "title": "Your agent's API key is probably leaking. Check in 2 minutes",
+     "hook": "A quick audit walkthrough.",
+     "format": "youtube_short",
+     "difficulty": "easy",
+     "why_now": "Secrets handling is asked about and rarely answered."
+    }
+   ]
+  },
+  {
+   "id": "opp-mpesa-small-site",
+   "title": "Accepting M-Pesa payments on a small website",
+   "core_question": "How do I add M-Pesa checkout to a site I built myself?",
+   "audience": "Kenyan small sellers and self-taught developers",
+   "why_detected": "Sellers who built their own site cannot find a walkthrough that goes from sandbox credentials to a live payment.",
+   "score": 77,
+   "band": "high",
+   "confidence": "medium",
+   "factors": [
+    {
+     "key": "demand",
+     "label": "Demand",
+     "value": 70.0,
+     "weight": 0.18,
+     "inverted": false,
+     "points": 12.6,
+     "max_points": 18.0,
+     "note": ""
+    },
+    {
+     "key": "question_density",
+     "label": "Question density",
+     "value": 68.0,
+     "weight": 0.14,
+     "inverted": false,
+     "points": 9.52,
+     "max_points": 14.0,
+     "note": ""
+    },
+    {
+     "key": "growth",
+     "label": "Growth",
+     "value": 100.0,
+     "weight": 0.14,
+     "inverted": false,
+     "points": 14.0,
+     "max_points": 14.0,
+     "note": ""
+    },
+    {
+     "key": "dissatisfaction",
+     "label": "Dissatisfaction",
+     "value": 78.0,
+     "weight": 0.16,
+     "inverted": false,
+     "points": 12.48,
+     "max_points": 16.0,
+     "note": ""
+    },
+    {
+     "key": "engagement",
+     "label": "Engagement",
+     "value": 60.0,
+     "weight": 0.08,
+     "inverted": false,
+     "points": 4.8,
+     "max_points": 8.0,
+     "note": ""
+    },
+    {
+     "key": "audience_value",
+     "label": "Audience value",
+     "value": 80.0,
+     "weight": 0.06,
+     "inverted": false,
+     "points": 4.8,
+     "max_points": 6.0,
+     "note": "Set by the creator profile, not by the data."
+    },
+    {
+     "key": "recency",
+     "label": "Recency",
+     "value": 85.0,
+     "weight": 0.06,
+     "inverted": false,
+     "points": 5.1,
+     "max_points": 6.0,
+     "note": ""
+    },
+    {
+     "key": "competition",
+     "label": "Competition",
+     "value": 22.0,
+     "weight": 0.1,
+     "inverted": true,
+     "points": 7.8,
+     "max_points": 10.0,
+     "note": "Few creators cover this end to end."
+    },
+    {
+     "key": "answer_saturation",
+     "label": "Answer coverage",
+     "value": 30.0,
+     "weight": 0.08,
+     "inverted": true,
+     "points": 5.6,
+     "max_points": 8.0,
+     "note": "Answer quality not yet assessed by AI."
+    }
+   ],
+   "stats": {
+    "related_questions": 47,
+    "askers": 39,
+    "sources": {
+     "youtube": 19,
+     "reddit": 28
+    },
+    "communities": 3,
+    "growth_7d": 1.36,
+    "velocity": "accelerating"
+   },
+   "trend": [
+    1,
+    2,
+    1,
+    2,
+    2,
+    3,
+    3,
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6
+   ],
+   "competition": {
+    "level": "low",
+    "creators": 5,
+    "note": "A handful of tutorials, most of them a few years old."
+   },
+   "answer_gap": {
+    "level": "high",
+    "note": "Sandbox is covered. Going live and handling failed payments is not."
+   },
+   "evidence": [
+    {
+     "source": "reddit",
+     "kind": "post",
+     "where": "r/Kenya",
+     "excerpt": "Got the Daraja sandbox working. Going to production is where every tutorial ends. Anyone done this?",
+     "engagement": "58 upvotes, 23 comments",
+     "days_ago": 3,
+     "url": "sample://reddit"
+    },
+    {
+     "source": "youtube",
+     "kind": "comment",
+     "where": "Comment on an 18 min integration video",
+     "excerpt": "This is from 2021, the callback part does not work anymore. Is there an updated one?",
+     "engagement": "34 likes",
+     "days_ago": 5,
+     "url": "sample://youtube"
+    }
+   ],
+   "related_questions": [
+    "How do I get M-Pesa Daraja production credentials?",
+    "How do I confirm a payment actually went through?",
+    "What do I do when the callback never arrives?"
+   ],
+   "ideas": [
+    {
+     "title": "M-Pesa checkout from sandbox to live, nothing skipped",
+     "hook": "Every step tutorials leave out, on a real small shop.",
+     "format": "youtube_long",
+     "difficulty": "hard",
+     "why_now": "Multiple questions stop at the production step."
+    }
+   ]
+  },
+  {
+   "id": "opp-whatsapp-support",
+   "title": "WhatsApp customer support with AI",
+   "core_question": "How can I answer WhatsApp customer messages automatically with AI?",
+   "audience": "Shop owners and freelancers",
+   "why_detected": "Steady demand, but the topic is crowded. A narrower angle is needed to stand out.",
+   "score": 54,
+   "band": "medium",
+   "confidence": "medium",
+   "factors": [
+    {
+     "key": "demand",
+     "label": "Demand",
+     "value": 74.0,
+     "weight": 0.18,
+     "inverted": false,
+     "points": 13.32,
+     "max_points": 18.0,
+     "note": ""
+    },
+    {
+     "key": "question_density",
+     "label": "Question density",
+     "value": 72.0,
+     "weight": 0.14,
+     "inverted": false,
+     "points": 10.08,
+     "max_points": 14.0,
+     "note": ""
+    },
+    {
+     "key": "growth",
+     "label": "Growth",
+     "value": 0.0,
+     "weight": 0.14,
+     "inverted": false,
+     "points": 0.0,
+     "max_points": 14.0,
+     "note": "Volume is flat over the last two weeks."
+    },
+    {
+     "key": "dissatisfaction",
+     "label": "Dissatisfaction",
+     "value": 55.0,
+     "weight": 0.16,
+     "inverted": false,
+     "points": 8.8,
+     "max_points": 16.0,
+     "note": ""
+    },
+    {
+     "key": "engagement",
+     "label": "Engagement",
+     "value": 64.0,
+     "weight": 0.08,
+     "inverted": false,
+     "points": 5.12,
+     "max_points": 8.0,
+     "note": ""
+    },
+    {
+     "key": "audience_value",
+     "label": "Audience value",
+     "value": 76.0,
+     "weight": 0.06,
+     "inverted": false,
+     "points": 4.56,
+     "max_points": 6.0,
+     "note": ""
+    },
+    {
+     "key": "recency",
+     "label": "Recency",
+     "value": 90.0,
+     "weight": 0.06,
+     "inverted": false,
+     "points": 5.4,
+     "max_points": 6.0,
+     "note": ""
+    },
+    {
+     "key": "competition",
+     "label": "Competition",
+     "value": 68.0,
+     "weight": 0.1,
+     "inverted": true,
+     "points": 3.2,
+     "max_points": 10.0,
+     "note": "Many creators already cover this in general terms."
+    },
+    {
+     "key": "answer_saturation",
+     "label": "Answer coverage",
+     "value": 58.0,
+     "weight": 0.08,
+     "inverted": true,
+     "points": 3.36,
+     "max_points": 8.0,
+     "note": "Answer quality not yet assessed by AI."
+    }
+   ],
+   "stats": {
+    "related_questions": 64,
+    "askers": 52,
+    "sources": {
+     "youtube": 38,
+     "reddit": 26
+    },
+    "communities": 5,
+    "growth_7d": 0.0,
+    "velocity": "stable"
+   },
+   "trend": [
+    4,
+    5,
+    4,
+    5,
+    4,
+    5,
+    5,
+    4,
+    5,
+    5,
+    4,
+    5,
+    4,
+    5
+   ],
+   "competition": {
+    "level": "high",
+    "creators": 41,
+    "note": "Well covered. A specific niche angle would matter more than the topic."
+   },
+   "answer_gap": {
+    "level": "medium",
+    "note": "Setup is covered. Handling approvals and templates is thin."
+   },
+   "evidence": [
+    {
+     "source": "reddit",
+     "kind": "post",
+     "where": "r/smallbusiness",
+     "excerpt": "Anyone using an AI bot on WhatsApp Business? Worried about it saying something wrong.",
+     "engagement": "77 upvotes, 31 comments",
+     "days_ago": 2,
+     "url": "sample://reddit"
+    },
+    {
+     "source": "youtube",
+     "kind": "comment",
+     "where": "Comment on a 15 min setup video",
+     "excerpt": "Works in the demo, but Meta keeps rejecting my message templates.",
+     "engagement": "29 likes",
+     "days_ago": 8,
+     "url": "sample://youtube"
+    }
+   ],
+   "related_questions": [
+    "Is it allowed to use a bot on WhatsApp Business?",
+    "Why does WhatsApp reject my message templates?",
+    "How much does the WhatsApp Business API cost per message?"
+   ],
+   "ideas": [
+    {
+     "title": "Why WhatsApp keeps rejecting your bot's message templates",
+     "hook": "A narrow fix for a problem the general tutorials skip.",
+     "format": "youtube_short",
+     "difficulty": "easy",
+     "why_now": "Template rejections show up repeatedly in comments."
+    }
+   ]
+  }
+ ],
+ "radar": [
+  {
+   "question": "How do I keep an AI agent running 24/7 without a big bill?",
+   "opportunity_id": "opp-deploy-agents-cheap",
+   "sources": [
+    "youtube",
+    "reddit"
+   ],
+   "momentum": 0.31,
+   "answer_gap": "high",
+   "minutes_ago": 12
+  },
+  {
+   "question": "Where does the automation run when my laptop is off?",
+   "opportunity_id": "opp-ai-support-smb",
+   "sources": [
+    "reddit",
+    "youtube"
+   ],
+   "momentum": 0.38,
+   "answer_gap": "high",
+   "minutes_ago": 27
+  },
+  {
+   "question": "Can someone show M-Pesa checkout going live, not sandbox?",
+   "opportunity_id": "opp-mpesa-small-site",
+   "sources": [
+    "reddit"
+   ],
+   "momentum": 0.22,
+   "answer_gap": "high",
+   "minutes_ago": 54
+  },
+  {
+   "question": "Why does WhatsApp keep rejecting my message templates?",
+   "opportunity_id": "opp-whatsapp-support",
+   "sources": [
+    "youtube",
+    "reddit"
+   ],
+   "momentum": 0.04,
+   "answer_gap": "medium",
+   "minutes_ago": 96
+  },
+  {
+   "question": "Is an AI reply bot safe to use with real customers?",
+   "opportunity_id": "opp-ai-support-smb",
+   "sources": [
+    "reddit"
+   ],
+   "momentum": 0.19,
+   "answer_gap": "medium",
+   "minutes_ago": 141
+  },
+  {
+   "question": "How do I self-host a small language model on a cheap VPS?",
+   "opportunity_id": null,
+   "sources": [
+    "reddit"
+   ],
+   "momentum": 0.15,
+   "answer_gap": "unknown",
+   "minutes_ago": 188
+  }
+ ],
+ "new_questions": [
+  {
+   "question": "How do I keep an AI agent running 24/7 without a big bill?",
+   "source": "reddit",
+   "minutes_ago": 12
+  },
+  {
+   "question": "Where does the automation run when my laptop is off?",
+   "source": "youtube",
+   "minutes_ago": 27
+  },
+  {
+   "question": "How do I confirm an M-Pesa payment actually went through?",
+   "source": "reddit",
+   "minutes_ago": 54
+  },
+  {
+   "question": "Do I need a developer to set up an AI receptionist?",
+   "source": "youtube",
+   "minutes_ago": 71
+  }
+ ],
+ "niches": [
+  {
+   "id": "niche-ai-smb",
+   "title": "Affordable AI automation for small businesses",
+   "audience": "Small business owners",
+   "why": [
+    "Question volume rose 130% week over week",
+    "Discussed in 4 communities",
+    "Repeated complaints that tutorials stop before deployment",
+    "Few detailed answers for a one-person shop"
+   ],
+   "opportunity_ids": [
+    "opp-ai-support-smb",
+    "opp-deploy-agents-cheap",
+    "opp-whatsapp-support"
+   ]
+  },
+  {
+   "id": "niche-ke-commerce",
+   "title": "Selling online in Kenya",
+   "audience": "Small sellers and self-taught developers",
+   "why": [
+    "Growing question volume about payments and hosting",
+    "Only a handful of recent tutorials",
+    "Existing walkthroughs stop at sandbox"
+   ],
+   "opportunity_ids": [
+    "opp-mpesa-small-site"
+   ]
+  }
+ ],
+ "insufficient": [
+  {
+   "scope": "Gaming",
+   "reason": "IDEA needs more evidence before identifying a reliable content opportunity.",
+   "questions_found": 9,
+   "questions_needed": 12,
+   "sources_found": 1,
+   "sources_needed": 2
+  }
+ ],
+ "categories": [
+  "AI",
+  "Technology",
+  "Business",
+  "Finance",
+  "Programming",
+  "Gaming",
+  "Education",
+  "Fitness",
+  "Food",
+  "Travel",
+  "Career",
+  "Music",
+  "Science",
+  "History",
+  "Productivity",
+  "Entrepreneurship",
+  "DIY",
+  "Fashion",
+  "Software",
+  "Local business",
+  "African technology",
+  "Kenya"
+ ]
+}

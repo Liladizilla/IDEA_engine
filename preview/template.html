@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IDEA design preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=Sofia+Sans+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--pg:#EEF0F1;--pg-text:#14212B;--pg-muted:#55636D;--pg-line:#CBD3D8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--pg:#0C1218;--pg-text:#E4EAEE;--pg-muted:#93A3AE;--pg-line:#243541}}
+:root[data-theme="dark"]{--pg:#0C1218;--pg-text:#E4EAEE;--pg-muted:#93A3AE;--pg-line:#243541}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--pg);color:var(--pg-text);font-family:"Schibsted Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:15px;line-height:1.5;font-variant-numeric:tabular-nums}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:left}
+.page{max-width:1000px;margin:0 auto;padding:32px 20px 48px;display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:56px;align-items:start}
+.side h1{font-family:"Sofia Sans Condensed","Arial Narrow",sans-serif;font-weight:700;font-size:44px;line-height:1;margin:0 0 16px;letter-spacing:-.2px}
+.side p{color:var(--pg-muted);max-width:46ch;margin:0 0 14px}
+.side h2{font-family:"Sofia Sans Condensed","Arial Narrow",sans-serif;font-size:22px;margin:28px 0 8px}
+.jump{display:flex;flex-wrap:wrap;gap:6px 18px;max-width:46ch}
+.jump button{padding:6px 0;border-bottom:1px solid var(--pg-line);color:var(--pg-text);font-weight:500}
+.jump button[aria-current="true"]{border-color:var(--pg-text);font-weight:600}
+.jump button:focus-visible,.side .tg:focus-visible{outline:2px solid var(--pg-text);outline-offset:3px}
+.tg{margin-top:20px;padding:10px 16px;border:1.5px solid var(--pg-line);border-radius:4px;font-weight:600}
+.phonewrap{position:sticky;top:20px}
+@media (max-width:900px){.page{grid-template-columns:1fr;gap:28px}.phonewrap{position:static;order:-1;display:flex;justify-content:center}}
+
+/* ---- the app ---- */
+.phone{--ground:#12202B;--surface:#182A37;--raised:#203648;--line:#2C4356;--text:#E8EEF1;--muted:#8DA2B0;--fil:#F4BF4F;--onfil:#12202B;--acc:#F4BF4F;
+ width:390px;max-width:100%;height:min(820px,calc(100vh - 40px));min-height:640px;border:1px solid var(--pg-line);border-radius:32px;overflow:hidden;background:var(--ground);color:var(--text);position:relative;display:flex;flex-direction:column}
+.phone[data-t="light"]{--ground:#E9EEF1;--surface:#F3F6F8;--raised:#DCE4E8;--line:#C0CDD5;--text:#12202B;--muted:#4A5F6D;--acc:#7A5300}
+.content{flex:1;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.pad{padding:20px 24px 32px}
+.h{font-family:"Sofia Sans Condensed","Arial Narrow",sans-serif;font-weight:700;line-height:1.05;letter-spacing:-.2px;margin:0}
+.num{font-family:"Sofia Sans Condensed","Arial Narrow",sans-serif;font-weight:700;line-height:1}
+.muted{color:var(--muted)}
+.strip{background:var(--raised);padding:8px 24px;font-size:12px;line-height:1.3;color:var(--muted)}.strip b{color:var(--text)}
+.sec{margin:32px 0 12px;display:flex;align-items:flex-end;justify-content:space-between}.sec h2{font-family:"Sofia Sans Condensed","Arial Narrow",sans-serif;font-weight:700;font-size:24px;margin:0;line-height:1.05}
+.sec button{color:var(--acc);font-weight:600;font-size:14px;padding:4px 0}
+.btn{white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:52px;padding:12px 24px;border-radius:4px;font-size:16px;font-weight:600;line-height:1.2;text-align:center}
+.btn.pri{background:var(--fil);color:var(--onfil)}.btn.sec2{border:1.5px solid var(--line);color:var(--text)}.btn[disabled]{opacity:.45;cursor:default}
+.btn+.btn{margin-top:12px}
+.hair{height:1px;background:var(--line)}
+.orow{display:flex;align-items:flex-start;width:100%;border-bottom:1px solid var(--line);padding:16px 0}
+.oscore{width:60px;flex:none;font-family:"Sofia Sans Condensed","Arial Narrow",sans-serif;font-weight:700;font-size:44px;line-height:1}.oscore.hi{color:var(--acc)}
+.obody{display:flex;flex-direction:column;flex:1;min-width:0}.otitle{font-size:17px;font-weight:600;line-height:1.25}
+.ometa{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:8px;font-size:13px;color:var(--muted);align-items:center}.mom{display:inline-flex;align-items:center;gap:4px}.mom.up{color:var(--acc)}
+.chip{display:inline-block;border:1px solid var(--line);border-radius:4px;padding:3px 8px;font-size:12px;font-weight:500;line-height:1.3;color:var(--muted)}
+.nrow{margin-bottom:16px}.nrow p{margin:0 0 4px;font-size:16px;font-weight:500;line-height:1.35}.nrow div{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--muted)}
+.box{border:1px solid var(--line);border-radius:4px;padding:16px}
+.box h3{font-family:"Sofia Sans Condensed","Arial Narrow",sans-serif;font-size:24px;line-height:1.05;margin:0 0 4px}
+.why{display:flex;gap:12px;font-size:14px;margin-top:6px}.why i{flex:none;width:4px;height:4px;background:var(--fil);margin-top:9px}
+.trow{display:flex;align-items:center;gap:16px;width:100%;padding:12px 0;border-bottom:1px solid var(--line)}.trow>div:first-child{flex:1}.trow b{font-weight:500;font-size:15px;line-height:1.3;display:block}.trow span{font-size:13px;color:var(--muted)}
+.trend{display:flex;align-items:flex-end;gap:3px}.trend i{flex:1;background:color-mix(in srgb,var(--muted) 55%,transparent)}.trend i.on{background:var(--fil)}
+.seg{display:flex;gap:2px;height:var(--h,8px)}.seg i{flex:1;background:var(--line)}.seg i.on{background:var(--fil)}.seg.muted i.on{background:var(--muted)}
+.ruler{display:flex;justify-content:space-between;align-items:flex-end;height:26px;padding:0 1px}.ruler i{width:2px;height:13px;background:var(--line)}.ruler i.t{height:26px}.ruler i.on{background:var(--fil)}
+.rl{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:4px}
+.big{display:flex;align-items:baseline;gap:8px;margin-bottom:16px}.big .num{font-size:96px}.big span:last-child{color:var(--muted)}
+.fac{margin-bottom:12px}.fac .r{display:flex;align-items:center;gap:0}.fac .l{width:124px;flex:none;font-size:14px;font-weight:500}.fac .seg{flex:1}.fac .p{width:44px;text-align:right;font-family:"Sofia Sans Condensed","Arial Narrow",sans-serif;font-weight:600;font-size:18px}
+.fac small{display:block;margin:4px 44px 0 0;font-size:12px;line-height:1.35;color:var(--muted)}
+.dsec{margin-top:32px}.dsec h2{font-family:"Sofia Sans Condensed","Arial Narrow",sans-serif;font-weight:700;font-size:22px;line-height:1.05;margin:0 0 12px}
+.dsec p{margin:0}.dsec .t16{font-size:16px}
+.ev{border-top:1px solid var(--line);padding:16px 0}.ev .top{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--muted)}.ev q{display:block;quotes:none;font-size:16px;line-height:1.4;margin:8px 0}.ev .bot{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--muted)}.ev .bot em{font-style:normal;font-size:12px}
+.idea{border:1px solid var(--line);border-radius:4px;padding:16px;margin-bottom:12px}.idea b{display:block;font-size:17px;font-weight:600;line-height:1.3}.idea p{color:var(--muted);margin:8px 0 12px}.idea .cs{display:flex;flex-wrap:wrap;gap:8px}.idea .wn{font-size:13px;margin-top:12px;color:var(--muted)}.idea .wn b{display:inline;font-size:13px;color:var(--text)}
+.bar{display:flex;gap:12px;padding:12px 20px;border-top:1px solid var(--line);background:var(--ground)}.bar .btn{margin:0}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.topbar button{padding:8px}
+.nav{display:flex;border-top:1px solid var(--line);background:var(--ground)}.nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:0 0 10px;color:var(--muted);font-size:12px;line-height:1.2}
+.nav button i{display:block;width:24px;height:2px;margin-bottom:10px}.nav button[aria-current="true"]{color:var(--text);font-weight:600}.nav button[aria-current="true"] i{background:var(--fil)}
+.phone button:focus-visible{outline:2px solid var(--text);outline-offset:2px}
+.bulb .fil{transition:fill .9s ease,r .9s ease}
+.splash{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}.splash .w{font-family:"Sofia Sans Condensed","Arial Narrow",sans-serif;font-weight:700;font-size:44px;letter-spacing:6px;line-height:1}
+.crow{display:flex;justify-content:space-between;align-items:center;width:100%;padding:16px 0;border-bottom:1px solid var(--line);font-size:17px}.crow.on{font-weight:600}
+.prog{display:flex;gap:2px;flex:1}.prog i{flex:1;height:4px;background:var(--line)}.prog i.on{background:var(--fil)}
+.inp{width:100%;background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:4px;padding:12px 16px;font:inherit;font-size:16px;margin-top:24px}.inp:focus{outline:none;border:1.5px solid var(--text)}
+.srch{display:flex;gap:8px}.srch .inp{margin:0;flex:1;padding-left:44px;background:var(--surface) no-repeat}
+.srch .w{position:relative;flex:1;display:flex}.srch .w svg{position:absolute;left:12px;top:14px;color:var(--muted)}
+.fbtn{width:52px;height:52px;border:1px solid var(--line);background:var(--surface);border-radius:4px;display:flex;align-items:center;justify-content:center;flex:none}.fbtn.on{background:var(--fil);border-color:var(--fil);color:var(--onfil)}
+.cats{display:flex;flex-wrap:wrap;gap:8px}.cats button{border:1px solid var(--line);border-radius:4px;padding:8px 12px;font-size:14px}
+.sig{display:flex;width:100%;text-align:left}.sig .rail{width:28px;flex:none;position:relative}.sig .rail:after{content:"";position:absolute;left:4px;top:34px;bottom:0;width:1px;background:var(--line)}
+.sig .mk{position:absolute;left:0;top:22px;width:9px;height:9px;border:1.5px solid var(--muted)}.sig .mk.on{background:var(--fil);border-color:var(--fil)}
+.sig .b{padding:12px 0 24px;flex:1}.sig .b small{font-size:12px;color:var(--muted)}.sig .b p{margin:2px 0 8px;font-size:16px;font-weight:500;line-height:1.35}.sig .b .m{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;font-size:13px;color:var(--muted)}.sig .b .g{font-size:13px;font-weight:500;margin-top:4px;color:var(--muted)}.sig .b .g.on{color:var(--acc)}
+.kv{display:flex;gap:16px;padding:8px 0;font-size:15px}.kv span:first-child{width:110px;flex:none;color:var(--muted);font-size:14px}.kv span:last-child{font-weight:500}
+.scrim{position:absolute;inset:0;background:rgba(6,12,17,.55);display:flex;align-items:flex-end}
+.sheet{width:100%;background:var(--surface);border-radius:4px 4px 0 0;padding:24px;max-height:85%;overflow:auto}
+.sheet h2{font-family:"Sofia Sans Condensed","Arial Narrow",sans-serif;font-size:26px;margin:0 0 16px;line-height:1.05}
+.two{display:flex;gap:12px;margin-top:24px}.two .btn{margin:0}
+.rng{width:100%;accent-color:var(--fil);margin:8px 0 16px}
+.tog{display:inline-block;border:1px solid var(--line);border-radius:4px;padding:12px 16px;margin:0 8px 8px 0;font-size:14px;font-weight:600}.tog.on{background:var(--text);color:var(--ground);border-color:var(--text)}
+.stage{display:flex;gap:0;margin-bottom:12px;font-size:15px;color:var(--muted);align-items:center}.stage.on{color:var(--text)}.stage .k{width:28px;flex:none;display:flex}.stage .sq{width:8px;height:8px;background:var(--line);margin:0 6px}
+.skel{background:var(--raised)}
+@media (prefers-reduced-motion:reduce){.bulb .fil{transition:none}}
+</style>
+</head>
+<body>
+<main class="page">
+  <section class="side">
+    <h1>IDEA, design preview</h1>
+    <p>This is how the Flutter app will look and behave, built from the same tokens, icon paths and score engine as the code. Every number and quote is sample data. Nothing here is real evidence.</p>
+    <h2>Screens</h2>
+    <div class="jump" id="jump"></div>
+    <button class="tg" id="theme">Switch to light</button>
+    <h2>What to check</h2>
+    <p>One accent, used only where evidence is lit. One 4px corner radius. No gradients, no shadows, no emoji, custom icons. The score ruler and the filament splash are the only showpieces.</p>
+  </section>
+  <section class="phonewrap"><div class="phone" id="phone" data-t="dark" aria-label="IDEA app preview"></div></section>
+</main>
+<script>
+const DATA = /*DATA*/;
+const ICONS = {
+ discover:'<path d="M16.13 7.25A6.5 6.5 0 1 1 13.75 4.87"/><path d="M15.1 15.1L20.5 20.5"/>',
+ radar:'<path d="M19.36 7.75A8.5 8.5 0 1 1 16.25 4.64"/><path d="M15.9 9.75A4.5 4.5 0 1 1 14.25 8.1"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/>',
+ saved:'<path d="M6.5 3.5H17.5V20.5L12 16L6.5 20.5Z"/>',
+ profile:'<circle cx="12" cy="8" r="3.5"/><path d="M5 20.5V18.5L8.5 14.5H15.5L19 18.5V20.5"/>',
+ back:'<path d="M14.5 5L7.5 12L14.5 19"/>', next:'<path d="M9.5 5L16.5 12L9.5 19"/>',
+ filter:'<path d="M3.5 8H20.5M3.5 16H20.5"/><path d="M8.5 5V11M15.5 13V19" stroke-width="3"/>',
+ close:'<path d="M6 6L18 18M18 6L6 18"/>',
+ external:'<path d="M10 5.5H5.5V18.5H18.5V14"/><path d="M13 5.5H18.5V11M18.5 5.5L11 13"/>',
+ create:'<path d="M4.5 19.5L5.5 15L15.5 5L19.5 9L9.5 19Z"/><path d="M13.5 7L17.5 11"/>',
+ up:'<path d="M12 6L19 17H5Z" fill="currentColor" stroke="none"/>', down:'<path d="M12 18L19 7H5Z" fill="currentColor" stroke="none"/>',
+ flat:'<path d="M4 9.5H20V14.5H4Z" fill="currentColor" stroke="none"/>', check:'<path d="M5 12.5L10 17.5L19 7"/>'
+};
+const icon=(n,s=24,filled=false,style='')=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" style="${style}" aria-hidden="true"><g fill="${filled?'currentColor':'none'}" stroke="currentColor" stroke-width="1.75" stroke-linejoin="miter" stroke-linecap="butt">${ICONS[n]}</g></svg>`;
+const bulb=(s,lit,cls='')=>`<svg class="bulb ${cls}" width="${s}" height="${s}" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="miter" stroke-linecap="butt"><path d="M9 15.27A6.5 6.5 0 1 1 16.18 4.52"/><path d="M17.89 6.75A6.5 6.5 0 0 1 15 15.27"/><path d="M9 15.27V17.75H15V15.27"/><path d="M10.5 20.5H13.5"/></g><circle class="fil" cx="12" cy="9.5" r="${lit?2.2:1.9}" style="fill:${lit?'var(--fil)':'currentColor'}"/></svg>`;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const cap=s=>s?s[0].toUpperCase()+s.slice(1):s;
+const ago=m=>m<60?`${m} min ago`:m<1440?`${Math.floor(m/60)} h ago`:`${Math.floor(m/1440)} d ago`;
+const pct=r=>{const p=Math.round(r*100);return p>0?`+${p}%`:`${p}%`};
+const SRC={youtube:'YouTube',reddit:'Reddit',search:'Search',rss:'Feeds'};const src=k=>SRC[k]||cap(k);
+const VEL={accelerating:'Accelerating',emerging:'Emerging',stable:'Stable',declining:'Declining',unknown:'Unknown'};
+const FMT={youtube_long:'YouTube long-form',youtube_short:'YouTube Short',tiktok:'TikTok',reel:'Instagram Reel',linkedin:'LinkedIn post',x_thread:'X thread',blog:'Blog post',newsletter:'Newsletter',podcast:'Podcast'};
+const chip=t=>`<span class="chip">${esc(t)}</span>`;
+const seg=(v,muted,h=8)=>`<div class="seg ${muted?'muted':''}" style="--h:${h}px">${Array.from({length:10},(_,i)=>`<i class="${i<Math.round(v/10)?'on':''}"></i>`).join('')}</div>`;
+const trend=(vals,h=72)=>{const m=Math.max(...vals);return `<div class="trend" style="height:${h}px">${vals.map((v,i)=>`<i class="${i>=vals.length-7?'on':''}" style="height:${v/m*100}%"></i>`).join('')}</div>`};
+const dirIcon=g=>g>.05?'up':g<-.05?'down':'flat';
+const oppRow=o=>`<button class="orow" data-a="open" data-id="${o.id}"><span class="oscore ${o.score>=75?'hi':''}">${o.score}</span><span class="obody"><span class="otitle">${esc(o.title)}</span><span class="ometa"><span>${o.stats.related_questions} questions in ${o.stats.communities} communities</span><span class="mom ${o.stats.growth_7d>.05?'up':''}">${icon(dirIcon(o.stats.growth_7d),12)}${pct(o.stats.growth_7d)} in 7 days</span></span></span></button>`;
+const sec=(t,tr,a)=>`<div class="sec"><h2>${t}</h2>${tr?`<button data-a="${a}">${tr}</button>`:''}</div>`;
+const strip=`<div class="strip"><b>Sample data</b>  Fixtures, not real evidence.</div>`;
+const insuf=i=>`<div class="box" style="margin-bottom:16px"><b style="font-size:16px">Insufficient signal: ${esc(i.scope)}</b><p class="muted" style="margin:8px 0 12px;font-size:14px">IDEA found ${i.questions_found} of ${i.questions_needed} questions and ${i.sources_found} of ${i.sources_needed} sources for ${esc(i.scope)}. That is not enough evidence to name a reliable opportunity, so none is shown.</p>${seg(i.questions_found/i.questions_needed*100,true,6)}</div>`;
+
+const S={screen:'splash',stack:[],tab:'home',oppId:null,saved:new Set(),theme:'dark',q:'',minScore:0,source:null,sheet:null,
+ onb:{step:0,picked:new Set(),niche:null,nicheText:'',aud:'',notify:'Daily'},scan:0,fmt:null,profile:{platforms:[],niche:'',aud:'',notify:'Daily',hasNiche:null}};
+let timers=[];const later=(f,ms)=>{const t=setTimeout(f,ms);timers.push(t);return t};const clear=()=>{timers.forEach(clearTimeout);timers=[]};
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const opp=id=>DATA.opportunities.find(o=>o.id===id);
+const $p=()=>document.getElementById('phone');
+
+function nav(){const t=[['home','Home',lit=>bulb(26,lit)],['discover','Discover',()=>icon('discover',26)],['radar','Radar',()=>icon('radar',26)],['saved','Saved',()=>icon('saved',26,S.tab==='saved')],['profile','Profile',()=>icon('profile',26)]];
+ return `<nav class="nav" aria-label="Main">${t.map(([k,l,f])=>`<button data-a="tab" data-k="${k}" ${S.tab===k?'aria-current="true"':''}><i></i>${f(S.tab===k)}<span>${l}</span></button>`).join('')}</nav>`}
+const shell=(body)=>`<div class="content" id="content">${strip}${body}</div>${nav()}`;
+
+function home(){const g=new Date().getHours();const greet=g<12?'Good morning.':g<18?'Good afternoon.':'Good evening.';
+ const by=[...DATA.opportunities].sort((a,b)=>b.stats.growth_7d-a.stats.growth_7d).slice(0,3);const n=DATA.niches[0];
+ return shell(`<div class="pad"><div style="display:flex;align-items:center;gap:6px;height:26px">${bulb(26,1)}<span class="h" style="font-size:24px;letter-spacing:1.5px">IDEA</span></div>
+ <h1 class="h" style="font-size:44px;margin-top:32px">${greet}</h1><p class="muted" style="font-size:18px;margin:4px 0 24px">What are you creating today?</p>
+ <button class="btn pri" data-a="scan">Find an idea</button><button class="btn sec2" data-a="tab" data-k="radar">Explore radar</button>
+ ${sec("Today's opportunities",'See all','seeall')}${DATA.opportunities.slice(0,3).map(oppRow).join('')}
+ ${sec('New questions')}${DATA.new_questions.map(q=>`<div class="nrow"><p>${esc(q.question)}</p><div>${chip(src(q.source))}<span>${ago(q.minutes_ago)}</span></div></div>`).join('')}
+ ${sec('Your niche')}<div class="box"><h3>${esc(n.title)}</h3><div class="muted" style="font-size:14px;margin-bottom:12px">For ${esc(n.audience.toLowerCase())}</div>${n.why.map(w=>`<div class="why"><i></i><span>${esc(w)}</span></div>`).join('')}</div>
+ ${sec('Trending signals')}${by.map(o=>`<button class="trow" data-a="open" data-id="${o.id}"><div><b>${esc(o.title)}</b><span>${VEL[o.stats.velocity]}</span></div><div style="width:96px">${trend(o.trend,32)}</div></button>`).join('')}</div>`)}
+
+function results(){const q=S.q.trim().toLowerCase();
+ const r=DATA.opportunities.filter(o=>o.score>=S.minScore&&(!S.source||o.stats.sources[S.source])&&(!q||`${o.title} ${o.core_question} ${o.audience}`.toLowerCase().includes(q)));
+ const ins=q?DATA.insufficient.filter(i=>i.scope.toLowerCase().includes(q)):[];
+ return ins.map(insuf).join('')+(r.length||ins.length?r.map(oppRow).join(''):`<p class="muted" style="margin-top:24px">Nothing matches yet. Try a broader phrase or lower the minimum score.</p>`)}
+function discover(){return shell(`<div class="pad"><h1 class="h" style="font-size:38px;margin-bottom:16px">Discover</h1>
+ <div class="srch"><div class="w">${icon('discover',20)}<input class="inp" id="q" value="${esc(S.q)}" placeholder="What are people asking about?" aria-label="Search"></div><button class="fbtn ${S.minScore||S.source?'on':''}" data-a="filter" aria-label="Filters">${icon('filter',22)}</button></div>
+ <div id="cats">${S.q?'':`${sec('Categories')}<div class="cats">${DATA.categories.map(c=>`<button data-a="cat" data-c="${esc(c)}">${esc(c)}</button>`).join('')}</div>`}</div>
+ <div id="results" style="margin-top:16px">${results()}</div></div>`)}
+
+function radar(){return shell(`<div class="pad"><h1 class="h" style="font-size:38px">Radar</h1><p class="muted" style="margin:8px 0 24px">Questions people are asking right now, grouped by what they have in common.</p>
+ ${DATA.radar.map(s=>{const on=!!s.opportunity_id;return `<button class="sig" ${on?`data-a="open" data-id="${s.opportunity_id}"`:'disabled style="cursor:default"'}><span class="rail"><span class="mk ${on?'on':''}"></span></span><span class="b"><small>${ago(s.minutes_ago)}</small><p>${esc(s.question)}</p><span class="m">${s.sources.map(x=>chip(src(x))).join('')}<span>${pct(s.momentum)} momentum</span></span><span class="g ${on?'on':''}" style="display:block">${on?'Answer gap: '+cap(s.answer_gap):'Still gathering evidence'}</span></span></button>`}).join('')}
+ ${DATA.insufficient.map(insuf).join('')}</div>`)}
+
+function saved(){const items=DATA.opportunities.filter(o=>S.saved.has(o.id));
+ return shell(`<div class="pad"><h1 class="h" style="font-size:38px;margin-bottom:16px">Saved</h1>${items.length?items.map(oppRow).join(''):`<h2 class="h" style="font-size:24px;margin-top:24px">Nothing saved yet</h2><p class="muted" style="margin:8px 0 24px">Save an opportunity and it will stay here, even offline.</p><button class="btn pri" style="width:auto" data-a="scan">Find an idea</button>`}</div>`)}
+
+function profile(){const p=S.profile;const kv=(k,v)=>`<div class="kv"><span>${k}</span><span class="${v?'':'muted'}">${esc(v||'Not set')}</span></div><div class="hair"></div>`;
+ return shell(`<div class="pad"><h1 class="h" style="font-size:38px">Profile</h1>${sec('Creator profile')}${kv('Creates',p.platforms.join(', '))}${kv('Niche',p.hasNiche===false?'Still looking':p.niche)}${kv('Audience',p.aud)}${kv('Notify',p.notify)}
+ ${sec('AI use today')}<div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="font-size:14px;font-weight:500">AI use today</span><span class="num" style="font-size:18px;font-weight:600">6 of 20</span></div>${seg(30,true)}
+ <div style="display:flex;justify-content:space-between;margin-top:16px;font-size:14px"><span style="font-weight:500">AI provider</span><span class="muted">Not connected</span></div>
+ <div style="display:flex;justify-content:space-between;margin-top:12px;font-size:14px"><span style="font-weight:500">Data</span><span class="muted">Sample data</span></div></div>`)}
+
+function ruler(){return `<div class="ruler" id="ruler">${Array.from({length:51},(_,i)=>`<i class="${i%5===0?'t':''}"></i>`).join('')}</div>`}
+function detail(){const o=opp(S.oppId);const st=o.stats;const sv=S.saved.has(o.id);
+ const src_line=Object.entries(st.sources).map(([k,v])=>`${src(k)} ${v}`).join(', ');
+ const d=(t,b)=>`<div class="dsec"><h2>${t}</h2>${b}</div>`;
+ return `<div class="content" id="content"><div class="pad" style="padding-top:8px"><div class="topbar"><button data-a="back" aria-label="Back">${icon('back')}</button><button data-a="save" data-id="${o.id}" aria-label="${sv?'Remove from saved':'Save'}" style="${sv?'color:var(--acc)':''}">${icon('saved',24,sv)}</button></div>
+ <h1 class="h" style="font-size:34px">${esc(o.title)}</h1>
+ <div style="margin-top:24px"><div class="big"><span class="num" id="scoreNum" style="${o.score>=75?'color:var(--acc)':''}">0</span><span>of 100</span></div>${ruler()}<div class="rl"><span>0</span><span>50</span><span>100</span></div></div>
+ <p class="muted" style="font-size:13px;margin:12px 0 24px">Confidence ${o.confidence}. ${st.related_questions} questions from ${Object.keys(st.sources).length} sources. Strength of the evidence found. Not a prediction of views.</p>
+ ${o.factors.map(f=>`<div class="fac"><div class="r"><span class="l">${esc(f.label)}</span>${seg(f.value,f.inverted)}<span class="p">${f.points.toFixed(1)}</span></div>${f.note||f.inverted?`<small>${esc(f.note||'Lower is better for you')}</small>`:''}</div>`).join('')}
+ ${d('Why this was detected',`<p class="t16">${esc(o.why_detected)}</p>`)}
+ ${d('The question',`<div class="h" style="font-size:26px">${esc(o.core_question)}</div><p class="muted" style="font-size:13px;margin-top:8px">Representative of ${st.related_questions} related questions</p>`)}
+ ${d('Who is asking',`<p class="t16">${esc(o.audience)}. ${st.askers} different people asked, across ${st.communities} communities.</p>`)}
+ ${d('Evidence',o.evidence.map(e=>`<div class="ev"><div class="top">${chip(src(e.source))}<span>${esc(e.where)}</span></div><q>${esc(e.excerpt)}</q><div class="bot"><span>${esc(e.engagement)}. ${e.days_ago} days ago</span><em>Sample item. No live link.</em></div></div>`).join(''))}
+ ${d('Trend',`${trend(o.trend)}<div class="rl"><span>14 days ago</span><span>Today</span></div><p style="margin-top:12px">${VEL[st.velocity]}. ${pct(st.growth_7d)} this week compared with last week.</p>`)}
+ ${d('Competition',`<p class="t16" style="font-weight:500">${cap(o.competition.level)}. ${o.competition.creators} creators cover the general topic.</p><p class="muted" style="margin-top:4px">${esc(o.competition.note)}</p>`)}
+ ${d('Answer gap',`<p class="t16" style="font-weight:600;color:var(--acc)">${cap(o.answer_gap.level)}</p><p class="muted" style="margin-top:4px">${esc(o.answer_gap.note)}</p>`)}
+ ${d('Related questions',o.related_questions.map(q=>`<p style="margin-bottom:12px">${esc(q)}</p>`).join(''))}
+ ${d('Content angles',o.ideas.map(i=>`<div class="idea"><b>${esc(i.title)}</b><p>${esc(i.hook)}</p><div class="cs">${chip(FMT[i.format]||i.format)}${chip('Difficulty: '+i.difficulty)}</div><div class="wn"><b>Why now</b>  ${esc(i.why_now)}</div></div>`).join(''))}
+ ${d('Sources',`<p class="t16">${src_line}</p>`)}</div></div>
+ <div class="bar"><button class="btn sec2" style="flex:1" data-a="research">Research</button><button class="btn pri" style="flex:2" data-a="create">${icon('create',20)}Create content</button></div>`}
+
+function research(){const o=opp(S.oppId);const p='<p class="muted t16">Needs a research run.</p>';const d=(t,b)=>`<div class="dsec"><h2>${t}</h2>${b}</div>`;
+ return `<div class="content" id="content"><div class="pad" style="padding-top:8px"><div class="topbar"><button data-a="back" aria-label="Back">${icon('back')}</button></div><h1 class="h" style="font-size:34px">Research brief</h1><p class="muted" style="margin-top:4px">${esc(o.title)}</p>
+ ${d('Problem',`<p class="t16">${esc(o.core_question)}</p>`)}${d('Audience',`<p class="t16">${esc(o.audience)}</p>`)}${d('Existing solutions',`<p class="t16">${esc(o.competition.note)}</p>`)}${d('Missing information',`<p class="t16">${esc(o.answer_gap.note)}</p>`)}
+ ${d('Common misconceptions',p)}${d('Conflicting opinions',p)}${d('Potential angles',o.ideas.map(i=>`<p class="t16" style="margin-bottom:8px">${esc(i.title)}</p>`).join(''))}${d('Sources',o.evidence.map(e=>`<p class="muted" style="margin-bottom:8px">${src(e.source)}, ${esc(e.where)}</p>`).join(''))}
+ <div style="margin-top:32px"><button class="btn pri" disabled>Run deep research</button></div></div></div>`}
+
+const PLAT=['YouTube','TikTok','Instagram','Blog','Newsletter','Podcast','Business','Nothing yet'];const NOT=['Daily','3 times weekly','Weekly','Important signals only'];
+function onboarding(){const o=S.onb;const T=['What do you create?','Do you have a niche?','Who is your audience?','How often should IDEA tell you what it found?'];
+ const row=(l,on,a,k)=>`<button class="crow ${on?'on':''}" data-a="${a}" data-k="${esc(k)}"><span>${esc(l)}</span>${on?icon('check',22,false,'color:var(--acc)'):''}</button>`;
+ let b='';if(o.step===0)b=PLAT.map(p=>row(p,o.picked.has(p),'pick',p)).join('');
+ if(o.step===1)b=row('Yes, I have one',o.niche===true,'niche','y')+row('No, help me find one',o.niche===false,'niche','n')+(o.niche===true?`<input class="inp" id="nt" value="${esc(o.nicheText)}" placeholder="Your niche">`:'');
+ if(o.step===2)b=`<textarea class="inp" id="aud" rows="3" placeholder="For example: first-time founders in Nairobi">${esc(o.aud)}</textarea>`;
+ if(o.step===3)b=NOT.map(n=>row(n,o.notify===n,'notify',n)).join('');
+ const ok=o.step===0?o.picked.size>0:o.step===1?(o.niche===false||(o.niche===true&&o.nicheText.trim())):true;
+ return `<div class="content"><div class="pad" style="display:flex;flex-direction:column;min-height:100%"><div style="display:flex;align-items:center;gap:12px">${o.step>0?`<button data-a="onbback" aria-label="Back">${icon('back')}</button>`:''}<div class="prog">${[0,1,2,3].map(i=>`<i class="${i<=o.step?'on':''}"></i>`).join('')}</div></div>
+ <h1 class="h" style="font-size:38px;margin:32px 0 24px">${T[o.step]}</h1><div style="flex:1" id="onbbody">${b}</div><button class="btn pri" id="onbnext" data-a="onbnext" ${ok?'':'disabled'} style="margin-top:24px">${o.step===3?'Start':'Continue'}</button></div></div>`}
+
+const STAGES=['Collecting public posts and comments','Pulling out the questions','Grouping similar questions','Checking which answers already exist','Scoring the evidence'];
+function scan(){const fin=S.scan>=STAGES.length;const top=DATA.opportunities.slice(0,3);
+ return `<div class="content"><div class="pad"><div class="topbar"><button data-a="closescan" aria-label="Close">${icon('close')}</button>${bulb(28,fin?1:0)}</div>
+ <h1 class="h" style="font-size:38px;margin:24px 0">${fin?top.length+' opportunities found':'Looking for gaps'}</h1>
+ ${STAGES.map((s,i)=>`<div class="stage ${i<S.scan?'on':''}"><span class="k">${i<S.scan?icon('check',20,false,'color:var(--acc)'):'<span class="sq"></span>'}</span>${s}</div>`).join('')}
+ ${fin?`<div style="margin-top:16px">${top.map(oppRow).join('')}<div style="margin-top:24px"><button class="btn sec2" data-a="tab" data-k="radar">Explore radar</button></div></div>`:''}</div></div>`}
+
+function splash(){return `<div class="splash" id="spl">${bulb(112,0)}<div class="w">IDEA</div><div class="muted" style="font-size:16px">Find what people want to know.</div></div>`}
+
+function sheetHtml(){if(!S.sheet)return '';
+ if(S.sheet==='filter')return `<div class="scrim" data-a="closesheet"><div class="sheet" data-stop><h2>Filters</h2><div style="display:flex;justify-content:space-between;font-weight:500"><span>Minimum opportunity score</span><span class="num" style="font-size:22px" id="mv">${S.minScore}</span></div><input class="rng" id="rng" type="range" min="0" max="100" step="5" value="${S.minScore}">
+ <div>${[[null,'All sources'],['youtube','YouTube'],['reddit','Reddit']].map(([k,l])=>`<button class="tog ${S.source===k?'on':''}" data-a="src" data-k="${k||''}">${l}</button>`).join('')}</div>
+ <div class="two"><button class="btn sec2" data-a="freset">Reset</button><button class="btn pri" data-a="closesheet">Apply</button></div></div></div>`;
+ return `<div class="scrim" data-a="closesheet"><div class="sheet" data-stop><h2>Choose a format</h2>${Object.entries(FMT).map(([k,l])=>`<button class="crow ${S.fmt===k?'on':''}" data-a="fmt" data-k="${k}"><span>${l}</span>${S.fmt===k?icon('check',22,false,'color:var(--acc)'):''}</button>`).join('')}
+ <p class="muted" style="font-size:13px;margin:16px 0 12px">Content generation needs the AI provider connected on the backend.</p><button class="btn pri" disabled>Create content</button></div></div>`}
+
+function render(keepScroll){const c=document.getElementById('content');const y=keepScroll&&c?c.scrollTop:0;clear();
+ const p=$p();p.dataset.t=S.theme;const map={splash,home,discover,radar,saved,profile,detail,research,onboarding,scan};
+ p.innerHTML=map[S.screen]()+sheetHtml();const n=document.getElementById('content');if(n)n.scrollTop=y;
+ document.querySelectorAll('#jump button').forEach(b=>b.setAttribute('aria-current',b.dataset.s===S.screen||(b.dataset.s==='insufficient'&&S.screen==='discover'&&S.q==='gaming')?'true':'false'));
+ if(S.screen==='splash'){later(()=>{const s=document.querySelector('#spl .bulb');if(s){const f=s.querySelector('.fil');f.style.fill='var(--fil)';f.setAttribute('r','2.2')}},reduce?0:350);later(()=>go('home'),reduce?300:2300)}
+ if(S.screen==='detail')animateScore(S.oppId);
+ if(S.screen==='scan'&&S.scan<STAGES.length)later(()=>{S.scan++;render(true)},650);
+ document.getElementById('theme').textContent=S.theme==='dark'?'Switch to light':'Switch to dark'}
+function animateScore(id){const o=opp(id);const el=document.getElementById('scoreNum');const ticks=[...document.querySelectorAll('#ruler i')];
+ const set=v=>{el.textContent=Math.round(v);ticks.forEach((t,i)=>t.classList.toggle('on',i*2<=v))};if(reduce){set(o.score);return}
+ const t0=performance.now();const step=t=>{const k=Math.min(1,(t-t0)/900);set(o.score*(1-Math.pow(1-k,3)));if(k<1&&document.getElementById('scoreNum')===el)requestAnimationFrame(step)};requestAnimationFrame(step)}
+function go(screen,extra={}){Object.assign(S,extra,{screen});if(['home','discover','radar','saved','profile'].includes(screen))S.tab=screen;S.sheet=null;render()}
+function open(id){S.stack.push({screen:S.screen,y:document.getElementById('content')?.scrollTop||0});S.oppId=id;go('detail')}
+function back(){const p=S.stack.pop()||{screen:S.tab};go(p.screen);const c=document.getElementById('content');if(c&&p.y)c.scrollTop=p.y}
+
+document.addEventListener('click',e=>{
+ if(e.target.closest('[data-stop]')&&!e.target.closest('[data-a]:not([data-a="closesheet"])'))return;
+ const t=e.target.closest('[data-a]');if(!t)return;const a=t.dataset.a,k=t.dataset.k,id=t.dataset.id;
+ const acts={tab:()=>{S.stack=[];go(k)},seeall:()=>go('discover'),open:()=>open(id),back,scan:()=>{S.scan=0;S.stack=[];go('scan')},closescan:()=>go('home'),
+  save:()=>{S.saved.has(id)?S.saved.delete(id):S.saved.add(id);render(true)},research:()=>{S.stack.push({screen:'detail',y:document.getElementById('content')?.scrollTop||0});go('research')},
+  create:()=>{S.sheet='create';render(true)},filter:()=>{S.sheet='filter';render(true)},closesheet:()=>{S.sheet=null;render(true)},fmt:()=>{S.fmt=k;render(true)},
+  src:()=>{S.source=k||null;render(true)},freset:()=>{S.minScore=0;S.source=null;S.sheet=null;render(true)},cat:()=>{S.q=t.dataset.c.toLowerCase();render()},
+  pick:()=>{S.onb.picked.has(k)?S.onb.picked.delete(k):S.onb.picked.add(k);render()},niche:()=>{S.onb.niche=k==='y';render()},notify:()=>{S.onb.notify=k;render()},
+  onbback:()=>{S.onb.step--;render()},onbnext:()=>{const o=S.onb;if(o.step<3){o.step++;render();return}S.profile={platforms:[...o.picked],hasNiche:o.niche,niche:o.nicheText,aud:o.aud,notify:o.notify};o.niche===false?(S.scan=0,go('scan')):go('home')}};
+ if(acts[a])acts[a]()});
+document.addEventListener('input',e=>{
+ if(e.target.id==='q'){S.q=e.target.value;document.getElementById('results').innerHTML=results();document.getElementById('cats').style.display=S.q?'none':''}
+ if(e.target.id==='rng'){S.minScore=+e.target.value;document.getElementById('mv').textContent=S.minScore}
+ if(e.target.id==='nt'){S.onb.nicheText=e.target.value;document.getElementById('onbnext').disabled=!e.target.value.trim()}
+ if(e.target.id==='aud')S.onb.aud=e.target.value});
+document.getElementById('theme').onclick=()=>{S.theme=S.theme==='dark'?'light':'dark';render(true)};
+const J=[['splash','Splash'],['onboarding','Onboarding'],['scan','First scan'],['home','Home'],['discover','Discover'],['radar','Radar'],['detail','Opportunity'],['research','Research brief'],['saved','Saved'],['profile','Profile'],['insufficient','Insufficient signal']];
+document.getElementById('jump').innerHTML=J.map(([s,l])=>`<button data-s="${s}">${l}</button>`).join('');
+document.getElementById('jump').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const s=b.dataset.s;S.stack=[];S.sheet=null;
+ if(s==='detail'){S.oppId=DATA.opportunities[0].id;go('detail')}else if(s==='research'){S.oppId=DATA.opportunities[0].id;go('research')}
+ else if(s==='onboarding'){S.onb={step:0,picked:new Set(),niche:null,nicheText:'',aud:'',notify:'Daily'};go('onboarding')}
+ else if(s==='scan'){S.scan=0;go('scan')}else if(s==='insufficient'){S.q='gaming';go('discover')}
+ else{if(s==='discover')S.q='';go(s)}});
+render();
+</script>
+</body>
+</html>

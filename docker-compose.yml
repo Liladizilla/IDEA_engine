@@ -1,0 +1,11 @@
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment: { POSTGRES_USER: idea, POSTGRES_PASSWORD: idea, POSTGRES_DB: idea }
+    ports: ["5432:5432"]
+    volumes: ["pgdata:/var/lib/postgresql/data", "./backend/scripts/init_db.sql:/docker-entrypoint-initdb.d/init.sql:ro"]
+  redis:
+    image: redis:7
+    ports: ["6379:6379"]
+volumes:
+  pgdata:
