@@ -120,7 +120,7 @@ async def get_bundle(session: AsyncSession) -> dict:
             .where(TrendSnapshot.cluster_id == cluster.id)
             .order_by(TrendSnapshot.day)
         )
-        trend_snapshots = [row.TrendSnapshot for row in trend_result.all()]
+        trend_snapshots = trend_result.scalars().all()
 
         # Convert rows to (Question, SourceItem) tuples
         questions = [(row.Question, row.SourceItem) for row in question_rows]

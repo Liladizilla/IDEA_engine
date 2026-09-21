@@ -1,4 +1,4 @@
-.env
+hell.env
 *.pem
 __pycache__/
 .pytest_cache/
@@ -8,3 +8,4 @@ mobile/.dart_tool/
 mobile/android/local.properties
 mobile/android/key.properties
 *.jks
+backend/.env
