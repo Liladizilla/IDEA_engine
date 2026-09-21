@@ -70,7 +70,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Row(children: [
               if (_step > 0)
-                InkWell(onTap: () => setState(() => _step--), child: Padding(padding: const EdgeInsets.only(right: Gap.m), child: const IdeaIcon(IdeaIcons.back)))
+                InkWell(onTap: () => setState(() => _step--), child: const Padding(padding: EdgeInsets.only(right: Gap.m), child: IdeaIcon(IdeaIcons.back)))
               else
                 const SizedBox(width: 0),
               Expanded(child: SegmentBar(value: (_step + 1) / 4 * 100, height: 4)),

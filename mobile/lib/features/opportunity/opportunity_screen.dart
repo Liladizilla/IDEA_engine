@@ -70,7 +70,7 @@ class _Body extends StatelessWidget {
     final sourceLine = st.sources.entries.map((e) => '${sourceLabel(e.key)} ${e.value}').join(', ');
     return ListView(padding: const EdgeInsets.fromLTRB(Gap.xl, Gap.s, Gap.xl, Gap.xxl), children: [
       Row(children: [
-        InkWell(onTap: () => context.canPop() ? context.pop() : context.go('/home'), child: Padding(padding: const EdgeInsets.symmetric(vertical: Gap.s), child: const IdeaIcon(IdeaIcons.back))),
+        InkWell(onTap: () => context.canPop() ? context.pop() : context.go('/home'), child: const Padding(padding: EdgeInsets.symmetric(vertical: Gap.s), child: IdeaIcon(IdeaIcons.back))),
         const Spacer(),
         InkWell(onTap: onSave, child: Padding(padding: const EdgeInsets.all(Gap.s), child: IdeaIcon(IdeaIcons.saved, filled: saved, color: saved ? c.accentText : c.text))),
       ]),
@@ -144,7 +144,7 @@ class _EvidenceRow extends StatelessWidget {
         const SizedBox(height: Gap.s),
         Row(children: [
           Expanded(child: Text('${e.engagement}. ${e.daysAgo} days ago', style: IdeaType.body(c.textMuted, size: 13))),
-          if (e.isSample) Text(s.sampleSource, style: IdeaType.body(c.textMuted, size: 12)) else InkWell(onTap: () {/* TODO: url_launcher */}, child: Row(children: [Text(s.openSource, style: IdeaType.body(c.accentText, size: 13, weight: FontWeight.w600)), const SizedBox(width: 4), IdeaIcon(IdeaIcons.external, size: 16, color: c.accentText)])),
+          if (e.isSample) Text(s.sampleSource, style: IdeaType.body(c.textMuted, size: 12)) else InkWell(onTap: () {}, child: Row(children: [Text(s.openSource, style: IdeaType.body(c.accentText, size: 13, weight: FontWeight.w600)), const SizedBox(width: 4), IdeaIcon(IdeaIcons.external, size: 16, color: c.accentText)])),
         ]),
       ]),
     );
@@ -174,7 +174,6 @@ class _CreateSheetState extends State<_CreateSheet> {
           const SizedBox(height: Gap.l),
           Text(s.generationNotConnected, style: IdeaType.body(c.textMuted, size: 13)),
           const SizedBox(height: Gap.m),
-          // TODO: POST /v1/content-projects {opportunity_id, format} once the AI provider is connected.
           IdeaButton(label: s.createContent, onPressed: null),
         ]),
       ),

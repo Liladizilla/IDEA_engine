@@ -28,7 +28,7 @@ class ResearchScreen extends StatelessWidget {
             Widget text(String t) => Text(t, style: IdeaType.body(c.text, size: 16));
             const pending = 'Needs a research run.';
             return ListView(padding: const EdgeInsets.fromLTRB(Gap.xl, Gap.s, Gap.xl, Gap.xxl), children: [
-              Align(alignment: Alignment.centerLeft, child: InkWell(onTap: () => context.pop(), child: Padding(padding: const EdgeInsets.symmetric(vertical: Gap.s), child: const IdeaIcon(IdeaIcons.back)))),
+              Align(alignment: Alignment.centerLeft, child: InkWell(onTap: () => context.pop(), child: const Padding(padding: EdgeInsets.symmetric(vertical: Gap.s), child: IdeaIcon(IdeaIcons.back)))),
               Text('Research brief', style: IdeaType.headline(c.text, size: 34)),
               const SizedBox(height: Gap.xs),
               Text(o.title, style: IdeaType.body(c.textMuted, size: 15)),
@@ -41,7 +41,7 @@ class ResearchScreen extends StatelessWidget {
               ResearchSection(title: 'Potential angles', child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [for (final i in o.ideas) Padding(padding: const EdgeInsets.only(bottom: Gap.s), child: text(i.title))])),
               ResearchSection(title: 'Sources', child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [for (final e in o.evidence) Padding(padding: const EdgeInsets.only(bottom: Gap.s), child: note('${sourceLabel(e.source)}, ${e.where}'))])),
               const SizedBox(height: Gap.xl),
-              const IdeaButton(label: 'Run deep research', onPressed: null), // TODO: POST /v1/research/{id}
+              const IdeaButton(label: 'Run deep research', onPressed: null),
             ]);
           },
         ),

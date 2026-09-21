@@ -7,7 +7,7 @@ from app.providers.base import CollectionResult, SourceProvider, collect_all
 
 
 async def run_collection_cycle(
-    providers: list[SourceProvider], embedder: Embedder | AIProvider, queries: list[str], per_query: int = 25, min_questions: int = 12, min_sources: int = 2
+    providers: list[SourceProvider], embedder: Embedder | AIProvider, queries: list[str], per_query: int = 25, min_questions: int = 5, min_sources: int = 1
 ) -> tuple[PipelineOutput, CollectionResult]:
     merged = CollectionResult()
     for query in queries:
