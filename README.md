@@ -62,10 +62,19 @@ cd mobile
 flutter pub get
 # Mock data (no backend needed)
 flutter run
-# Real backend data
+# Real backend data (emulator)
 flutter run --dart-define=USE_MOCK=false --dart-define=API_BASE_URL=http://10.0.2.2:8000
-# Build release APK
+# Real backend data (physical device - replace with your computer's LAN IP)
+flutter run --dart-define=USE_MOCK=false --dart-define=API_BASE_URL=http://YOUR_LAN_IP:8000
+# Build release APK for emulator
 flutter build apk --release --dart-define=API_BASE_URL=http://10.0.2.2:8000 --dart-define=USE_MOCK=false
+# Build release APK for physical device (replace with your LAN IP)
+flutter build apk --release --dart-define=API_BASE_URL=http://YOUR_LAN_IP:8000 --dart-define=USE_MOCK=false
+
+# Find your LAN IP:
+# Linux: ip route get 1.1.1.1 | awk '{print $7}'
+# macOS: ipconfig getifaddr en0
+# Windows: ipconfig | findstr IPv4
 ```
 
 ## API Endpoints

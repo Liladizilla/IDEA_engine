@@ -29,11 +29,19 @@ class _SplashScreenState extends ConsumerState<SplashScreen> with SingleTickerPr
 
   Future<void> _leave() async {
     await Future.delayed(const Duration(milliseconds: 1900));
-    while (mounted && !ref.read(profileLoadedProvider)) {
+    
+    // Wait for profile to load with timeout
+    int attempts = 0;
+    while (mounted && !ref.read(profileLoadedProvider) && attempts < 100) {
       await Future.delayed(const Duration(milliseconds: 50));
+      attempts++;
     }
+    
     if (!mounted) return;
-    context.go(ref.read(profileProvider).done ? '/home' : '/onboarding');
+    
+    // If profile still not loaded after timeout, proceed anyway
+    final profile = ref.read(profileProvider);
+    context.go(profile.done ? '/home' : '/onboarding');
   }
 
   @override

@@ -47,10 +47,15 @@ class ProfileNotifier extends Notifier<CreatorProfile> {
   }
 
   Future<void> _load() async {
-    final prefs = await SharedPreferences.getInstance();
-    final raw = prefs.getString(_key);
-    if (raw != null) state = CreatorProfile.fromJson(jsonDecode(raw) as Map<String, dynamic>);
-    ref.read(profileLoadedProvider.notifier).state = true;
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final raw = prefs.getString(_key);
+      if (raw != null) state = CreatorProfile.fromJson(jsonDecode(raw) as Map<String, dynamic>);
+    } catch (_) {
+      // Ignore errors, use default profile
+    } finally {
+      ref.read(profileLoadedProvider.notifier).state = true;
+    }
   }
 
   Future<void> update(CreatorProfile Function(CreatorProfile) change) async {
